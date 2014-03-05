@@ -1,0 +1,23 @@
+{% extends "AcmeWebBundle::layout.html.twig" %}
+
+{% block app_content %}
+<table width="100%">    
+   {% if users | length > 0 %}
+    {% for user in users %}
+    <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.createdAt|date("Y-m-d H:i:s") }}</td>        
+        <td><a href="{{ path("user_delete",{ "id": user.id })}}">删除</a></td>
+    </tr>        
+    {% endfor %}
+    {% else %}
+        {{ 'NULL' }}
+    {% endif %} 
+
+</table>
+
+
+{% endblock %}

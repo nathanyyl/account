@@ -1,0 +1,5 @@
+acme_user_homepage:
+#    pattern:  /hello/{name}
+#    defaults: { _controller: AcmeUserBundle:Default:index }
+    resource: "@AcmeUserBundle/Controller"
+    type:     annotation

@@ -27,6 +27,19 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         $context = $this->context;
         $request = $this->request;
 
+        if (0 === strpos($pathinfo, '/bundles/css/general.css')) {
+            // _assetic_8b355fe
+            if ($pathinfo === '/bundles/css/general.css') {
+                return array (  '_controller' => 'assetic.controller:render',  'name' => '8b355fe',  'pos' => NULL,  '_format' => 'css',  '_route' => '_assetic_8b355fe',);
+            }
+
+            // _assetic_e05777a
+            if ($pathinfo === '/bundles/css/general.css') {
+                return array (  '_controller' => 'assetic.controller:render',  'name' => 'e05777a',  'pos' => NULL,  '_format' => 'css',  '_route' => '_assetic_e05777a',);
+            }
+
+        }
+
         if (0 === strpos($pathinfo, '/_')) {
             // _wdt
             if (0 === strpos($pathinfo, '/_wdt') && preg_match('#^/_wdt/(?P<token>[^/]++)$#s', $pathinfo, $matches)) {
@@ -131,6 +144,24 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return array (  '_controller' => 'Sensio\\Bundle\\DistributionBundle\\Controller\\ConfiguratorController::finalAction',  '_route' => '_configurator_final',);
                 }
 
+            }
+
+        }
+
+        // acme_web_homepage
+        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'acme_web_homepage')), array (  '_controller' => 'Acme\\WebBundle\\Controller\\DefaultController::indexAction',));
+        }
+
+        if (0 === strpos($pathinfo, '/user')) {
+            // user_show
+            if ($pathinfo === '/user/show') {
+                return array (  '_controller' => 'Acme\\UserBundle\\Controller\\UserController::indexAction',  '_route' => 'user_show',);
+            }
+
+            // user_delete
+            if (0 === strpos($pathinfo, '/user/delete') && preg_match('#^/user/delete(?:/(?P<id>[^/]++))?$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'user_delete')), array (  'id' => NULL,  '_controller' => 'Acme\\UserBundle\\Controller\\UserController::deleteAction',));
             }
 
         }
